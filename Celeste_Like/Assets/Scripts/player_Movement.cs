@@ -13,9 +13,10 @@ public class player_Movement : MonoBehaviour
     private float horizontalSpeed = 10f;
 
     //Vertical movement
+    private bool fallHandled = false;
     private bool canJump = false;
     private float jumpPower = 10f;
-    private float maxFallSpeed = 20f; //when the player is in maxFallSpeed change settings to avoid the need of changing the velocity every time
+    private float maxFallSpeed = -20f; //when the player is in maxFallSpeed change settings to avoid the need of changing the velocity every time
     private float fallSpeedIncrease = 5f;
 
     void Start()
@@ -33,9 +34,9 @@ public class player_Movement : MonoBehaviour
         {
             performJump();
         }
-        if(rb.velocity.y < 0)
+        if(rb.velocity.y < 0 && !fallHandled)
         {
-            
+            fallHandler();
         }
     }
     private void FixedUpdate()
@@ -48,8 +49,16 @@ public class player_Movement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpPower);
     }
 
-    private void fallHander()
+    private void fallHandler()
     {
-        //handle all the stuff related to fall, like maxFallSpeed, Falling increase, and so on
+        if(rb.velocity.y <= maxFallSpeed)
+        {
+            //don't let the gravity affect the body
+            fallHandled = true;
+        }
+        else
+        {
+            //increase the fallSpeed
+        }
     }
 }
