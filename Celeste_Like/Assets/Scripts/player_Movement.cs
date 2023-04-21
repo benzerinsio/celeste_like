@@ -15,13 +15,15 @@ public class player_Movement : MonoBehaviour
     //Vertical movement
     private bool fallHandled = false;
     private bool canJump = false;
-    private float jumpPower = 10f;
+    private float rbDefaultGravity;
+    private float jumpPower = 15f;
     private float maxFallSpeed = -20f; //when the player is in maxFallSpeed change settings to avoid the need of changing the velocity every time
-    private float fallSpeedIncrease = 5f;
+    private float fallSpeedIncrease = -15f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rbDefaultGravity = rb.gravityScale;
         
     }
 
@@ -29,13 +31,22 @@ public class player_Movement : MonoBehaviour
     {
         horizontalDirection = Input.GetAxisRaw("Horizontal");
         verticalDirection = Input.GetAxisRaw("Vertical");
-        
+
+        // Debug.Log("Fall Handled: "+fallHandled);
+        Debug.Log("velocidade: " + rb.velocity.y);  
+
         if (Input.GetButtonDown("Jump"))
         {
             performJump();
         }
+        if(rb.velocity.y >= 0f)//When the player is grounded or is in some sort of upwards momentum, the fallSpeed is defaulted
+        {
+            rb.gravityScale = rbDefaultGravity;
+            fallHandled = false;
+        }
         if(rb.velocity.y < 0 && !fallHandled)
         {
+            
             fallHandler();
         }
     }
@@ -53,12 +64,13 @@ public class player_Movement : MonoBehaviour
     {
         if(rb.velocity.y <= maxFallSpeed)
         {
-            //don't let the gravity affect the body
+            rb.gravityScale = 0f;
+            rb.velocity = new Vector2(rb.velocity.x, maxFallSpeed);
             fallHandled = true;
         }
         else
         {
-            //increase the fallSpeed
+            rb.AddForce(new Vector2(0f, fallSpeedIncrease), ForceMode2D.Force);
         }
     }
 }
