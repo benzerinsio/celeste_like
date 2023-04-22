@@ -5,6 +5,8 @@ using UnityEngine;
 public class player_Movement : MonoBehaviour
 {
     //Tools
+    [SerializeField] private LayerMask jumpableGround;
+    private BoxCollider2D bc;
     private Rigidbody2D rb;
     private float horizontalDirection;
     private float verticalDirection;
@@ -13,18 +15,21 @@ public class player_Movement : MonoBehaviour
     private float horizontalSpeed = 10f;
 
     //Vertical movement
+    private float jumpBuffer = 0.1f;
+    private float coyoteTimer = 0.1f;
+    private float jumpBufferCounter = 0f;
+    private float coyoteCounter = 0f;
     private bool fallHandled = false;
-    private bool canJump = false;
     private float rbDefaultGravity;
     private float jumpPower = 15f;
     private float maxFallSpeed = -20f; //when the player is in maxFallSpeed change settings to avoid the need of changing the velocity every time
-    private float fallSpeedIncrease = -15f;
+    private float fallSpeedIncrease = -50f;
 
     void Start()
     {
+        bc = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         rbDefaultGravity = rb.gravityScale;
-        
     }
 
     void Update()
@@ -32,32 +37,49 @@ public class player_Movement : MonoBehaviour
         horizontalDirection = Input.GetAxisRaw("Horizontal");
         verticalDirection = Input.GetAxisRaw("Vertical");
 
-        // Debug.Log("Fall Handled: "+fallHandled);
-        Debug.Log("velocidade: " + rb.velocity.y);  
+        jumpBufferCounter -= Time.deltaTime;
+        coyoteCounter -= Time.deltaTime;
 
         if (Input.GetButtonDown("Jump"))
         {
+            jumpBufferCounter = jumpBuffer;
+        }
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            performJumpCut();
+        }
+        if (coyoteCounter >= 0f && jumpBufferCounter >= 0f)
+        {
+            jumpBufferCounter = 0f;//if not setting one of the conditions to 0, it perform the jump a few times (until the counters go to less than 0)
             performJump();
         }
-        if(rb.velocity.y >= 0f)//When the player is grounded or is in some sort of upwards momentum, the fallSpeed is defaulted
+        if(rb.velocity.y >= 0f || isGrounded())
         {
             rb.gravityScale = rbDefaultGravity;
             fallHandled = false;
         }
-        if(rb.velocity.y < 0 && !fallHandled)
+        if (isGrounded())
         {
-            
-            fallHandler();
+            coyoteCounter = coyoteTimer;
         }
     }
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontalDirection*horizontalSpeed,rb.velocity.y);
+        if (rb.velocity.y < 0 && !fallHandled)
+        {
+            fallHandler();
+        }
     }
 
-    private void performJump()//Do some checks in here to assure that it can jump
+    private void performJump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+    }
+
+    private void performJumpCut()
+    {
+        rb.velocity = new Vector2(rb.velocity.x,2f);
     }
 
     private void fallHandler()
@@ -72,5 +94,10 @@ public class player_Movement : MonoBehaviour
         {
             rb.AddForce(new Vector2(0f, fallSpeedIncrease), ForceMode2D.Force);
         }
+    }
+
+    private bool isGrounded()
+    {
+        return Physics2D.BoxCast(bc.bounds.center/*the actual position*/, bc.bounds.size/*size of each axis*/, 0f, Vector2.down/*or Vector2(0, -1)*/, .1f, jumpableGround);
     }
 }
