@@ -21,7 +21,7 @@ public class player_Movement : MonoBehaviour
     private float coyoteCounter = 0f;
     private bool fallHandled = false;
     private float rbDefaultGravity;
-    private float jumpPower = 15f;
+    private float jumpPower = 13f;
     private float maxFallSpeed = -20f; //when the player is in maxFallSpeed change settings to avoid the need of changing the velocity every time
     private float fallSpeedIncrease = -50f;
 
