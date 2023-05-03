@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 245577741}
+  playerRb: {fileID: 245577740}
   followSpeed: 4
 --- !u!1 &799852807
 GameObject:
