@@ -23,8 +23,8 @@ public class player_Movement : MonoBehaviour
     private bool fallHandled = false;
     private float rbDefaultGravity;
     private float jumpPower = 13f;
-    private float maxFallSpeed = -20f; //when the player is in maxFallSpeed change settings to avoid the need of changing the velocity every time
-    private float fallSpeedIncrease = -50f;
+    private float maxFallSpeed = -18f; //when the player is in maxFallSpeed change settings to avoid the need of changing the velocity every time
+    private float fallSpeedIncrease = -40f;
 
     //Animation
     private Animator animator;
