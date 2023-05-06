@@ -31,6 +31,6 @@ public class fallingBehaviour : MonoBehaviour
     private void fallHandler()
     {
         //rb.bodyType = RigidbodyType2D.Dynamic;
-        Destroy(gameObject, 1.5f);
+        //Destroy(gameObject, 1.5f);
     }
 }
