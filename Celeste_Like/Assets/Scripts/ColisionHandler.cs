@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class colliderHandler : MonoBehaviour
+public class ColisionHandler : MonoBehaviour
 {
     private BoxCollider2D bc;
-    private float frameSpeed = 0.12f;
+    private float frameSpeed = 0.1f;
     private float adjustCounter = 0f;
     private float frameCounter = 0f;
     private float yDefaultHeight = 0.42f;
-    private float increaseAux = -0.5f;
-    private float offsetDefault = 1.79f;
-    private float offsetAux = 0.25f;
+    private float increaseAux = -0.6f;
+    private float offsetDefault = 2.75f;
+    private float offsetAux = 0.3f;
     private float offsetIncrease = 0;
     // Start is called before the first frame update
     void Start()
@@ -42,13 +42,13 @@ public class colliderHandler : MonoBehaviour
         bc.size = new Vector2(bc.size.x, yDefaultHeight);
         offsetIncrease = 0;
         offsetAux *= -1;
-        adjustCounter = 5f;
+        adjustCounter = 9f;
         increaseAux *= -1f;
     }
     private void decreaseBoxCollider2D()
     {
         offsetAux *= -1;
-        adjustCounter = 4f;
+        adjustCounter = 9f;
         increaseAux *= -1f;
     }
 
