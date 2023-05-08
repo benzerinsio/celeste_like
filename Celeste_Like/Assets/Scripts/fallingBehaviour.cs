@@ -31,23 +31,24 @@ public class fallingBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !fall)
         {
+            fall = true;
             StartCoroutine(fallHandler());
         }
     }
 
     private IEnumerator fallHandler()
     {
-        fall = true;
         yield return new WaitForSeconds(2f);
         rb.bodyType = RigidbodyType2D.Dynamic;
         yield return new WaitForSeconds(2f);
         sprite.enabled = false;
         bc.enabled = false;
-        yield return new WaitForSeconds(3f);
-        transform.position = defaultPosition;
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        sprite.enabled = true;
+        yield return new WaitForSeconds(2f);
         bc.enabled = true;
+        sprite.enabled = true;
+        rb.bodyType = RigidbodyType2D.Static;
+        transform.position = defaultPosition;
+        yield return new WaitForSeconds(1f);
         fall = false;
     }
 }

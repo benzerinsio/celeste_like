@@ -8,7 +8,7 @@ public class Player_Life : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private BoxCollider2D bc;
-    public Vector2 spawnPoint = new Vector2(-10f, -3f);
+    public Vector2 spawnPoint;
     //public position para o restart; 
 
     private void Start()
@@ -16,12 +16,13 @@ public class Player_Life : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        spawnPoint = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log("Spawn: " + spawnPoint);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -41,11 +42,10 @@ public class Player_Life : MonoBehaviour
 
     private void restartLevel()
     {
-        animator.ResetTrigger("Death");
-        transform.position = spawnPoint;
         bc.enabled = true;
+        transform.position = spawnPoint;
         rb.bodyType = RigidbodyType2D.Dynamic;
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        animator.ResetTrigger("Death");
     }
 
 }
