@@ -7,6 +7,7 @@ public class Player_Life : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody2D rb;
+    private BoxCollider2D bc;
     public Vector2 spawnPoint = new Vector2(-10f, -3f);
     //public position para o restart; 
 
@@ -14,6 +15,7 @@ public class Player_Life : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -30,8 +32,9 @@ public class Player_Life : MonoBehaviour
         }
     }
 
-    private void dieHandler()
+    public void dieHandler()
     {
+        bc.enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("Death");
     }
@@ -39,8 +42,9 @@ public class Player_Life : MonoBehaviour
     private void restartLevel()
     {
         animator.ResetTrigger("Death");
-        rb.bodyType = RigidbodyType2D.Dynamic;
         transform.position = spawnPoint;
+        bc.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

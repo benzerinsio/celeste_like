@@ -5,12 +5,17 @@ using UnityEngine;
 public class fallingBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Animator animator;
     private Rigidbody2D rb;
+    private BoxCollider2D bc;
+    private SpriteRenderer sprite;
+    private Vector2 defaultPosition;
+    private bool fall = false;
     void Start()
     {
-        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        defaultPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -19,18 +24,30 @@ public class fallingBehaviour : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !fall)
         {
-            //animator.SetTrigger("Fall"); -> call the fallHandler function when the animation is over
-            fallHandler();
+            StartCoroutine(fallHandler());
         }
     }
 
-    private void fallHandler()
+    private IEnumerator fallHandler()
     {
-        //rb.bodyType = RigidbodyType2D.Dynamic;
-        //Destroy(gameObject, 1.5f);
+        fall = true;
+        yield return new WaitForSeconds(2f);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        yield return new WaitForSeconds(2f);
+        sprite.enabled = false;
+        bc.enabled = false;
+        yield return new WaitForSeconds(3f);
+        transform.position = defaultPosition;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        sprite.enabled = true;
+        bc.enabled = true;
+        fall = false;
     }
 }

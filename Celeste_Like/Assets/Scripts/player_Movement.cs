@@ -41,11 +41,9 @@ public class player_Movement : MonoBehaviour
 
     void Update()
     {
+        timeCounterHandler();
         horizontalDirection = Input.GetAxisRaw("Horizontal");
         verticalDirection = Input.GetAxisRaw("Vertical");
-
-        jumpBufferCounter -= Time.deltaTime;
-        coyoteCounter -= Time.deltaTime;
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -148,6 +146,10 @@ public class player_Movement : MonoBehaviour
         }
     }
 
-
+    private void timeCounterHandler()
+    {
+        jumpBufferCounter -= Time.deltaTime;
+        coyoteCounter -= Time.deltaTime;
+    }
 
 }
