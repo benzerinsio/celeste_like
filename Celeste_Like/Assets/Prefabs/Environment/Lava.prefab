@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5182931495238466071}
   - component: {fileID: 1065162487227037588}
   - component: {fileID: 5996974288828190693}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lava
   m_TagString: Trap
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1500340751, guid: bb95b8835d3e8ce4a9620ba7e1603b4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
