@@ -22,7 +22,7 @@ public class player_Movement : MonoBehaviour
     private float floatyCut = 2f;
     private bool fallHandled = false;
     private float rbDefaultGravity;
-    private float jumpPower = 13f;
+    private float jumpPower = 14f;
     private float maxFallSpeed = -18f; //when the player is in maxFallSpeed change settings to avoid the need of changing the velocity every time
     private float fallSpeedIncrease = -40f;
 

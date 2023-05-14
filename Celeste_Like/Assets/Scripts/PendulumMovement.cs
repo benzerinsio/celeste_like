@@ -10,7 +10,6 @@ public class PendulumMovement : MonoBehaviour
     private bool changeRotation = true;
     [SerializeField] private GameObject player;
     public float defaultAngulation = -23f;
-    private bool collided = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,19 +36,5 @@ public class PendulumMovement : MonoBehaviour
         yield return new WaitForSeconds(2f);
         changeRotation = true;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && !collided)
-        {
-            StartCoroutine(playerColision());
-        }
-    }
-
-    private IEnumerator playerColision()
-    {
-        collided = true;
-        yield return new WaitForSeconds(1.5f);
-        transform.Rotate(0f, 0f, defaultAngulation);
-        collided = false;
-    }
+    
 }
