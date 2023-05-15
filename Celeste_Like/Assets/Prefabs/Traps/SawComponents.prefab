@@ -128,7 +128,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.062524796, y: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 8965375695153504591}
   - {fileID: 8965375696068666605}
+  die: {fileID: 3439160565581381523, guid: 38e9ccac40cf03843a4d50f8ea62b363, type: 3}
 --- !u!95 &8965375695403536122
 Animator:
   serializedVersion: 5
