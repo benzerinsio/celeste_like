@@ -40,6 +40,7 @@ public class fallingBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         yield return new WaitForSeconds(2f);
         sprite.enabled = false;
         bc.enabled = false;
