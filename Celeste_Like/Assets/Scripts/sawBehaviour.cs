@@ -9,7 +9,8 @@ public class sawBehaviour : MonoBehaviour
     [SerializeField] Player_Life die;
     private int currentPoint = 0;
     private float planSpeed = 6f;
-    private void FixedUpdate()
+
+    private void Update()
     {
         if (Vector2.Distance(waypoints[currentPoint].transform.position, transform.position) < .1f)
         {
@@ -19,6 +20,8 @@ public class sawBehaviour : MonoBehaviour
                 currentPoint = 0;
             }
         }
+    }
+    private void FixedUpdate() { 
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPoint].transform.position, Time.deltaTime * planSpeed);
     }
 

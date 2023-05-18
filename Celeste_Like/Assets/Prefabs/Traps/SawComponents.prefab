@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8965375695153504584}
   m_Layer: 0
   m_Name: wayPointA
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 8965375696068666606}
   m_Layer: 0
   m_Name: wayPointB
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
