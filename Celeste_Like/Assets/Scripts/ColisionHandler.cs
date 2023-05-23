@@ -5,6 +5,7 @@ using UnityEngine;
 public class ColisionHandler : MonoBehaviour
 {
     private BoxCollider2D bc;
+    private UnityEngine.Rendering.Universal.Light2D light;
     private float frameSpeed = 0.1f;
     private float adjustCounter = 0f;
     private float frameCounter = 0f;
@@ -16,6 +17,7 @@ public class ColisionHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        light = GetComponent<UnityEngine.Rendering.Universal.Light2D>();
         bc = GetComponent<BoxCollider2D>();
     }
 
