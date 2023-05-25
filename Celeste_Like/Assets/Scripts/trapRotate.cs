@@ -8,11 +8,13 @@ public class trapRotate : MonoBehaviour
     private float rotateSpeed = 50f;
     private float rotationCounter;
     [SerializeField] rotationAttack variable;
+    public Vector2 defaultPosition;
 
     private void Start()
     {
         rotationTime = 180 / rotateSpeed;
         rotationCounter = 0;
+        defaultPosition = transform.position;
     }
 
     private void Update()
@@ -23,17 +25,16 @@ public class trapRotate : MonoBehaviour
         {
             variable.rotateSpeed = 0f;
             variable.resetRotation();
-            //move platform back to its original state (upwards)
+            transform.position = defaultPosition;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && rotationCounter < 0f)
+        if (collision.gameObject.CompareTag("Player") && rotationCounter < 0f)
         {
             rotationCounter = rotationTime;
             variable.rotateSpeed = rotateSpeed;
-            //move downwards
+            transform.position = new Vector2(defaultPosition.x, defaultPosition.y - 0.2f);
         }
     }
 }
