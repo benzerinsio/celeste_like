@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class trapRotate : MonoBehaviour
 {
-    private float rotationTime; //set the time that takes to the trap to fully rotate
+    private float rotationTime;
+    private float rotateSpeed = 50f;
     private float rotationCounter;
+    [SerializeField] rotationAttack variable;
 
     private void Start()
     {
+        rotationTime = 180 / rotateSpeed;
         rotationCounter = 0;
     }
 
@@ -18,6 +21,8 @@ public class trapRotate : MonoBehaviour
 
         if(rotationCounter < 0f)
         {
+            variable.rotateSpeed = 0f;
+            variable.resetRotation();
             //move platform back to its original state (upwards)
         }
     }
@@ -27,8 +32,8 @@ public class trapRotate : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") && rotationCounter < 0f)
         {
             rotationCounter = rotationTime;
+            variable.rotateSpeed = rotateSpeed;
             //move downwards
-            //call the rotate trap script
         }
     }
 }
