@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7007246724649045514}
   - component: {fileID: 6184135559122251852}
   - component: {fileID: 4076778655184871440}
-  - component: {fileID: 1481766287781010904}
   - component: {fileID: 2514286999608053272}
   m_Layer: 0
   m_Name: Red_Bullet
@@ -127,18 +126,6 @@ CircleCollider2D:
   serializedVersion: 2
   m_Radius: 0.78125
 --- !u!114 &4076778655184871440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7563877107607917933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a630243ed9e8774bb7a6d9462beb158, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1481766287781010904
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
