@@ -7,6 +7,7 @@ public class FollowNShoot : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bulletPrefab;
+    public float defaultRotation;
     private bool playerClose = false;
     private Rigidbody2D rb;
 
@@ -22,7 +23,7 @@ public class FollowNShoot : MonoBehaviour
             playerClose = true;
         } else
         {
-            rb.rotation = -90f;
+            rb.rotation = defaultRotation;
             playerClose = false;
         }
 

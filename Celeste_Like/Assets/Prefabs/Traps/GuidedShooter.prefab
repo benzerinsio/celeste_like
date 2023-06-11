@@ -278,6 +278,7 @@ MonoBehaviour:
   player: {fileID: 0}
   firePoint: {fileID: 274280398965647828}
   bulletPrefab: {fileID: 7563877107607917933, guid: f6b4c9f828142814284e242743262fcd, type: 3}
+  parentGameObject: {fileID: 274280399469663056}
 --- !u!95 &274280399630437790
 Animator:
   serializedVersion: 5
